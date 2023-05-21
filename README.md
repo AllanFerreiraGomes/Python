@@ -1,2 +1,2 @@
 # Python
-Python que estou fazendo durante a faculdade
+Desafios em Python que estou fazendo durante a faculdade
