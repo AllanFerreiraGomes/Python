@@ -1,0 +1,48 @@
+import requests
+
+# Consumindo api
+def obter_valor_bitcoin():
+    url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=brl"
+    
+    try:
+        response = requests.get(url)
+        data = response.json()
+        
+        if 'bitcoin' in data:
+            bitcoin_data = data['bitcoin']
+            if 'brl' in bitcoin_data:
+                bitcoin_price = bitcoin_data['brl']
+                return bitcoin_price
+    except requests.exceptions.RequestException as e:
+        print("Erro ao obter o valor do Bitcoin:", e)
+    
+    return None
+
+  
+def Calcular():
+    print("\tSelecione uma Opção \n1-Converter Bitcoins em Reais \n2-Converter Reais em Bitcoins \n3-Sair")
+    valor_bitcoin = obter_valor_bitcoin()
+    opc = int(input())
+    while opc != 3:
+         if opc == 1:
+           quant = float(input("Digite a quantidade de Bitcoins:"))
+           btc = quant * valor_bitcoin
+           Total = btc * 1
+           print("Total de Bitcoin" , Total)
+           break
+        
+         elif opc ==2:
+           quant = float(input("Digite seu valor em Real:"))
+           Total = quant / valor_bitcoin
+           print("Total de Bitcoin" , Total)     
+           break
+         else :
+            print("Invalido")
+            Calcular()
+
+    
+
+valor_bitcoin = obter_valor_bitcoin()
+print("Valor atual do Bitcoin em BRL:", valor_bitcoin)
+ 
+Calcular()
